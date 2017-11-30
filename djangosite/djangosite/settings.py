@@ -73,6 +73,12 @@ USE_L10N = True
 
 USE_TZ = True
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'local_db',
+    }
+}
 
 PROJECT_PATH = os.path.abspath(os.path.join(os.path.split(__file__)[0], '..'))
 
