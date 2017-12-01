@@ -19,13 +19,13 @@ class DetailView(View):
         return super(DetailView, self).dispatch(*args, **kwargs)
 
     def get(self, request, *args, **kwargs):
-        slug = self.kwargs['slug']
+        name = self.kwargs['name']
         
-        if not slug:
+        if not name:
             raise Http404
 
         try:
-            endpoint = JsonEndpoint.objects.get(slug=slug)
+            endpoint = JsonEndpoint.objects.get(name=name)
         except JsonEndpoint.DoesNotExist:
             raise Http404
 
@@ -33,13 +33,13 @@ class DetailView(View):
 
     @csrf_exempt
     def post(self, request, *args, **kwargs):
-        slug = self.kwargs['slug']
+        name = self.kwargs['name']
         
-        if not slug:
+        if not name:
             raise Http404
 
         try:
-            endpoint = JsonEndpoint.objects.get(slug=slug)
+            endpoint = JsonEndpoint.objects.get(name=name)
         except JsonEndpoint.DoesNotExist:
             raise Http404
 
@@ -55,13 +55,13 @@ class AuthView(View):
         return super(AuthView, self).dispatch(*args, **kwargs)
 
     def get(self, request, *args, **kwargs):
-        slug = self.kwargs['slug']
+        name = self.kwargs['name']
         
-        if not slug:
+        if not name:
             raise Http404
 
         try:
-            endpoint = AuthEndpoint.objects.get(slug=slug)
+            endpoint = AuthEndpoint.objects.get(name=name)
         except AuthEndpoint.DoesNotExist:
             raise Http404
 
@@ -72,13 +72,13 @@ class AuthView(View):
 
     @csrf_exempt
     def post(self, request, *args, **kwargs):
-        slug = self.kwargs['slug']
+        name = self.kwargs['name']
         
-        if not slug:
+        if not name:
             raise Http404
 
         try:
-            endpoint = AuthEndpoint.objects.get(slug=slug)
+            endpoint = AuthEndpoint.objects.get(name=name)
         except AuthEndpoint.DoesNotExist:
             raise Http404
 
