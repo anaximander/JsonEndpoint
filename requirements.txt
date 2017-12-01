@@ -10,3 +10,4 @@ jsonfield==0.9.20
 python-slugify==0.0.7
 six==1.5.2
 wsgiref==0.1.2
+requests
