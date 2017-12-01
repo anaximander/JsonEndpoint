@@ -15,7 +15,7 @@ class JsonEndpoint(models.Model):
         return self.name
 
     def url(self):
-        return "/%s/" % self.name
+        return self.name
 
 
 class AuthEndpoint(models.Model):
@@ -29,7 +29,7 @@ class AuthEndpoint(models.Model):
         super(AuthEndpoint, self).save(*args, **kwargs)
 
     def url(self):
-        return "/%s/" % self.name
+        return self.name
 
 
 class MockObjectClass(models.Model):
