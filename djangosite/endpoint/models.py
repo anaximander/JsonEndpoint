@@ -1,12 +1,18 @@
 from django.db import models
 from jsonfield import JSONField
 from taggit.managers import TaggableManager
+from slugify import slugify
 
 class JsonEndpoint(models.Model):
     name = models.CharField(max_length=255, unique=True)
     blob = JSONField()
+    slug = models.SlugField(max_length=255, unique=True) 
 
     tags = TaggableManager(blank=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(JsonEndpoint, self).save(*args, **kwargs)
 
     class Meta:
         ordering = ['name']
@@ -21,6 +27,11 @@ class JsonEndpoint(models.Model):
 class AuthEndpoint(models.Model):
     name = models.CharField(max_length=255, unique=True)
     enabled = models.BooleanField(default=False)
+    slug = models.SlugField(max_length=255, unique=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(AuthEndpoint, self).save(*args, **kwargs)
 
     def __unicode__(self):
         return self.name
